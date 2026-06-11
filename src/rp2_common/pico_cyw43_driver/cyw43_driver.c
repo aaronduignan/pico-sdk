@@ -267,14 +267,10 @@ void cyw43_await_background_or_timeout_us(uint32_t timeout_us) {
 }
 
 void cyw43_delay_ms(uint32_t ms) {
-    // The low-level CYW43 driver calls this while holding the async-context lock.
-    // Do not use async_context_wait_until()/sleep_ms() here; background work is
-    // intentionally blocked until the lock is released.
     busy_wait_ms(ms);
 }
 
 void cyw43_delay_us(uint32_t us) {
-    // See cyw43_delay_ms().
     busy_wait_us(us);
 }
 
